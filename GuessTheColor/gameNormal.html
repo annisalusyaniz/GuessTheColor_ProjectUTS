@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charsetgoyang dombret="utf-8">
+    <title>Guess The Color</title>
+    <link rel="stylesheet" type="text/css" href="css/designNormal.css">
+</head>
+
+<body>
+    <div id="countdown"></div>
+    <h1>
+        <span id="colorDisplay">RGB</span>
+    </h1>
+    <div id="container">
+        <div class="round"></div>
+        <div class="round"></div>
+		<div class="round"></div>
+		<div class="round"></div>
+        <div class="round"></div>
+		<div class="round"></div>
+    </div>
+    <br><br><br><br><br><br>
+	<div><h2 id="answer"></h2>
+    <div class="btn">
+		<a href="mainHome.html">
+		<input type="image" id="home" width="40" height="40" src="icon/Homepage.png" onclick="confirm('Are you sure want to return to the main page?')"></a>
+		<input type="image" id="reset" width="40" height="40" src="icon/Reset.png">
+		<input type="image" id="musik" width="40" height="40" src="icon/musicdif.png">
+	</div>
+	
+	<audio id="backsound" hidden autoplay loop>
+        <source src="audio/colorsound.mp3" type="audio/mpeg">
+    </audio>
+<script>
+var timer = 25;
+	var c = 0;
+	
+	var pop = new Audio;
+	pop.src = "audio/popping.mp3";
+	
+	var audio = document.getElementById('backsound');
+		document.getElementById('musik').addEventListener('click', function (e){
+			e = e || window.event;
+			audio.muted = !audio.muted;
+			e.preventDefault();
+		}, false);
+	
+	function resetWaktu(){
+	var cek = document.getElementById("countdown").innerHTML
+		if (cek == "TIME OUT"){
+			timer = 25
+			waktuMain();
+		}else{
+			timer = 25;
+		}
+	}
+	
+	function waktuMain() {
+		timex = setTimeout(function(){
+			if(timer > 0){ 
+				timer--;
+				waktuMain();
+				document.getElementById("countdown").innerHTML = "Timer : " + timer;
+			}else{
+				document.getElementById("countdown").innerHTML = "TIME OUT";
+				alert("GAME OVER! Waktu telah habis!");
+			}
+		}, 1000);
+	}
+	waktuMain();
+		
+	function makeColourValue() {
+		return Math.round(Math.random() * 255);
+	}
+
+	function setButtonColour(button, red, green, blue) {
+		button.setAttribute('style',
+			'background-color: rgb(' + red + ',' + green + ',' + blue + ');'
+		);
+	}
+
+	var buttons = document.getElementsByClassName('round');
+	var heading = document.getElementById('colorDisplay');
+	
+	var answerMessage = document.getElementById('answer');
+	var answerButton = Math.round(Math.random() * (buttons.length - 1));
+
+	for (var i = 0; i < buttons.length; i++) {
+	
+		var red = makeColourValue();
+		var green = makeColourValue();
+		var blue = makeColourValue();
+
+		setButtonColour(buttons[i], red, green, blue);
+
+		if (i === answerButton) {
+			heading.innerHTML = `(${red}, ${green}, ${blue})`;
+		}
+
+		buttons[i].addEventListener('click', function() {
+			if (this === buttons[answerButton]) {
+				answerMessage.innerHTML = "Correct!";
+			} else {
+				answerMessage.innerHTML = "Wrong answer! Guess again!";
+			}
+		});
+
+	}
+
+	function startGame() {
+		answerMessage.innerHTML = "";
+
+		var answerButton = Math.round(Math.random() * (buttons.length - 1));
+
+		for (var i = 0; i < buttons.length; i++) {
+
+			var red = makeColourValue();
+			var green = makeColourValue();
+			var blue = makeColourValue();
+
+			setButtonColour(buttons[i], red, green, blue);
+
+			if (i === answerButton) {
+				heading.innerHTML = `(${red}, ${green}, ${blue})`;
+			}
+
+			buttons[i].addEventListener('click', function() {
+				if (this === buttons[answerButton]) {
+					timer += 5;
+					pop.play();
+					answerMessage.innerHTML = "Correct!";
+				} else {
+					timer -= 5;
+					answerMessage.innerHTML = "Wrong answer! Guess again!";
+				}
+			});
+
+		}
+	}
+	startGame();	
+	document.getElementById('reset').addEventListener('click', startGame);
+	document.getElementById('reset').addEventListener('click', resetWaktu);
+
+</script>
+</body>
+</html>

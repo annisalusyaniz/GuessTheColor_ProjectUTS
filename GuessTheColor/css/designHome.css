@@ -1,0 +1,45 @@
+@import url('https://fonts.googleapis.com/css2?family=Lato:wght@100&family=Signika+Negative&display=swap');
+body {
+    background-color: #F6E7D8;
+    font-family: 'Signika Negative', sans-serif;
+    font-style: normal;
+    font-size: 45px;
+    line-height: 55px;
+    color: #000000;
+}
+#musik{
+	position: absolute;
+	top: 20px;
+	left: 95%;
+}
+#logname{
+	position: absolute;
+	top : 25%;
+	left : 30%;
+}
+#name{
+	width:420px;
+	height:75px;
+	box-sizing: border-box;
+    background-color: #F6E7D8;
+	border-radius: 10px;
+    border:10px solid #874356;
+	margin-left: 90px;
+	font-family: 'Signika Negative', sans-serif;
+    font-style: normal;
+    font-size: 35px;
+	text-align: center;
+	color:#C65D7B;
+	display: block;
+}
+::placeholder{
+	color:#C65D7B;;
+}
+#play{
+	position: absolute;
+	top : 85%;
+	left : 93%;
+}
+#play:hover{
+	transform: scale(1.2);
+}

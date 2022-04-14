@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Guess the Color</title>
+  <link rel="stylesheet" href="css/designhome.css">
+</head>
+<body>
+	<div><input type="image" id="musik" width="50" height="50" src="icon/musicon.png"></div> 
+	
+	<div id="logname">
+		<input type="image" id="logo" width="600" src="img/logo.png">
+        <input type="text" id="name" placeholder="your name">
+	</div>	
+	
+	<audio id="backsound" hidden autoplay loop>
+        <source src="audio/colorsound.mp3" type="audio/mpeg">
+    </audio>
+	
+	<div id="play">
+		<a href="gameLevel.html">
+		<input type="image" width="80" height="80" src="icon/Circledplay.png"></a>
+	</div>
+	
+<script>
+	var audio = document.getElementById('backsound');
+		document.getElementById('musik').addEventListener('click', function (e){
+			e = e || window.event;
+			audio.muted = !audio.muted;
+			e.preventDefault();
+		}, false);
+</script>
+</body>
+</html>
+	
